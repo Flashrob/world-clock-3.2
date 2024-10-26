@@ -6,8 +6,40 @@ import Clock from "./Clock";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { TableRow } from "./components/TableRow";
+
+const timeZonesData = [
+  {
+    timeZone: "Asia/Seoul",
+    city: "Seoul",
+  },
+  {
+    timeZone: "Asia/Singapore",
+    city: "Singapore",
+  },
+  {
+    timeZone: "Europe/London",
+    city: "London",
+  },
+];
 
 export default function App() {
+  const timeZones = timeZonesData.map((timeZoneItem, index) => {
+    return (
+      <TableRow
+        timeZone={timeZoneItem.timeZone}
+        city={timeZoneItem.city}
+        key={index}
+      />
+    );
+  });
+
+  // const timeZones = [
+  //   <TableRow timeZone="Asia/Seoul" city="Seoul" />,
+  //   <TableRow timeZone="Asia/Singapore" city="Singapore" />,
+  //   <TableRow timeZone="Europe/London" city="London" />,
+  // ];
+
   return (
     <div>
       <img src={logo} className="logo" alt="Rocket logo" />
@@ -19,36 +51,7 @@ export default function App() {
             <Col className="table-col">City</Col>
             <Col className="table-time">Clock</Col>
           </Row>
-          <Row className="table-row">
-            <Col className="table-col">
-              <p>Asia/Seoul</p>
-            </Col>
-            <Col className="table-time">
-              <p>
-                <Clock timeZone="Asia/Seoul" />
-              </p>
-            </Col>
-          </Row>
-          <Row className="table-row">
-            <Col className="table-col">
-              <p>Asia/Singapore</p>
-            </Col>
-            <Col className="table-time">
-              <p>
-                <Clock timeZone="Asia/Singapore" />
-              </p>
-            </Col>
-          </Row>
-          <Row className="table-row">
-            <Col className="table-col">
-              <p>Europe/London</p>
-            </Col>
-            <Col className="table-time">
-              <p>
-                <Clock timeZone="Europe/London" />
-              </p>
-            </Col>
-          </Row>
+          {timeZones}
         </Container>
       </div>
     </div>
